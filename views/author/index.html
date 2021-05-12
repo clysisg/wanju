@@ -1,0 +1,171 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>权限管理
+                    <small>列表</small>
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="row-fluid">
+                <form action="" method="get">
+                    <a class="btn btn-success" href="{eval U(['author/add','menu_id'=>'author/index'])}"> 添加权限</a>
+                </form>
+            </div>
+            <div class="x_content" style="display: block;">
+                <table class="table J_per_list">
+                    <thead>
+                    <tr>
+                        <th width="5%">#</th>
+                        <th width="15%">一级菜单</th>
+                        <th width="10%">二级菜单</th>
+                        <th width="10%">三级菜单</th>
+                        <th width="10%">权限</th>
+                        <th width="">创建日期</th>
+                        <th width="">修改日期</th>
+                        <th width="30%">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {foreach $data.list $v1 $k1}
+                    {if isset($v1['auth'])}
+                    <!-- 一级菜单 -->
+                    <tr id="{$v1['auth'].id}">
+                        <td>{$v1['auth'].id}</td>
+                        <td style="white-space: nowrap;">{$k1} <input type="button" value="+" class="J_open_second_sub"
+                                                                      open_sub_hd="false"/></td>
+                        <td></td>
+                        <td></td>
+                        <td>{$v1['auth'].action}</td>
+                        <td>{$v1['auth'].create_date }</td>
+                        <td>{$v1['auth'].update_date }</td>
+                        <td>
+                            <div class="x_content">
+                                <a class="btn btn-primary btn-xs"
+                                   href="{eval U(['author/edit','menu_id'=>'author/index','id'=>$v1['auth'].id])}">
+                                    编辑</a>
+                                <button class="btn btn-danger btn-xs" data-toggle="dropdown">删除
+                                    <i class="icon-angle-down"></i></button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{eval U(['author/delete','menu_id'=>'author/index','id'=>$v1['auth'].id])}">确定</a>
+                                    </li>
+                                    <li><a href="javascript:;">取消</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- 一级菜单end -->
+                    {if count($v1) > 1 }
+                    {foreach $v1 $v2 $k2}
+                    {if isset($v2['auth'])}
+                    {if $k2 neq 'auth' }
+                    <!-- 二级菜单 -->
+                    <tr parent_id="{$v1['auth'].id}" id="{$v2['auth'].id}" class="hide">
+                        <td>{$v2['auth'].id}</td>
+                        <td></td>
+                        <td style="white-space: nowrap;">{$k2} <input type="button" value="+" class="J_open_third_sub"
+                                                                      open_sub_hd="false"/></td>
+                        <td></td>
+                        <td>{$v2['auth'].action}</td>
+                        <td>{$v2['auth'].create_date }</td>
+                        <td>{$v2['auth'].update_date}</td>
+                        <td>
+                            <div class="x_content">
+                                <a class="btn btn-primary btn-xs"
+                                   href="{eval U(['author/edit','menu_id'=>'author/index','id'=>$v2['auth'].id])}">
+                                    编辑</a>
+                                <button class="btn btn-danger btn-xs" data-toggle="dropdown">删除
+                                    <i class="icon-angle-down"></i></button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{eval U(['author/delete','menu_id'=>'author/index','id'=>$v2['auth'].id])}">确定</a>
+                                    </li>
+                                    <li><a href="javascript:;">取消</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- 二级菜单end -->
+                    <!-- 一级菜单end -->
+                    {if count($v2) > 1 }
+                    {foreach $v2 $v3 $k3}
+                    {if $k3 neq 'auth' }
+                    <!-- 二级菜单 -->
+                    <tr first_parent_id="{$v1['auth'].id}" second_parent_id="{$v2['auth'].id}" class="hide">
+                        <td>{$v3['auth'].id}</td>
+                        <td></td>
+                        <td></td>
+                        <td style="white-space: nowrap;">{$k3}</td>
+                        <td>{$v3['auth'].action}</td>
+                        <td>{$v3['auth'].create_date }</td>
+                        <td>{$v3['auth'].update_date}</td>
+                        <td>
+                            <div class="x_content">
+                                <a class="btn btn-primary btn-xs"
+                                   href="{eval U(['author/edit','menu_id'=>'author/index','id'=>$v3['auth'].id])}">
+                                    编辑</a>
+                                <button class="btn btn-danger btn-xs" data-toggle="dropdown">删除
+                                    <i class="icon-angle-down"></i></button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{eval U(['author/delete','menu_id'=>'author/index','id'=>$v3['auth'].id])}">确定</a>
+                                    </li>
+                                    <li><a href="javascript:;">取消</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- 二级菜单end -->
+                    {/if}
+                    {/foreach}
+                    {/if}
+                    {/if}
+                    {/if}
+                    {/foreach}
+                    {/if}
+                    {/if}
+                    {/foreach}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(function () {
+        var sub_bool = false;
+        $('.J_open_second_sub').on('click', function () {
+            var _this = $(this);
+            var open_sub_hd = _this.attr('open_sub_hd');
+            var items_id = _this.parents('tr').attr('id');
+            if (open_sub_hd == 'false') {
+                $('.J_per_list tr[parent_id="' + items_id + '"]').removeClass('hide').find('.J_open_third_sub').attr('open_sub_hd', 'false').val('+');
+                _this.attr('open_sub_hd', 'true').val('-');
+            } else {
+                $('.J_per_list tr[parent_id="' + items_id + '"]').addClass('hide');
+                $('.J_per_list tr[first_parent_id="' + items_id + '"]').addClass('hide');
+                _this.attr('open_sub_hd', 'false').val('+');
+            }
+            ;
+        });
+
+        $('.J_open_third_sub').on('click', function () {
+            var _this = $(this);
+            var open_sub_hd = _this.attr('open_sub_hd');
+            var items_id = _this.parents('tr').attr('id');
+            if (open_sub_hd == 'false') {
+                $('.J_per_list tr[second_parent_id="' + items_id + '"]').removeClass('hide');
+                _this.attr('open_sub_hd', 'true').val('-');
+            } else {
+                $('.J_per_list tr[second_parent_id="' + items_id + '"]').addClass('hide');
+
+                _this.attr('open_sub_hd', 'false').val('+');
+            }
+            ;
+        });
+    });
+</script>

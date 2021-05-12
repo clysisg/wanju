@@ -1,0 +1,83 @@
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>编辑配置</h2>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                    <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1"  aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-8 col-xl-12">
+
+                                    <form action="/config/edit.html" method="post" class="form-horizontal form-label-left">
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">配置名称</label>
+
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <input type="text" class="form-control" value="{$data.config.config_name}" required name="config_name" placeholder="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">配置KEY</label>
+
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <input type="text" class="form-control" value="{$data.config.config_key}" readonly required name="config_key" placeholder="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">配置VALUE</label>
+
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <input type="text" class="form-control" value="{$data.config.config_value}" required name="config_value" placeholder="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">配置描述</label>
+
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <input type="text" class="form-control" value="{$data.config.config_desc}" name="config_desc" placeholder="">
+                                            </div>
+                                        </div>
+
+                                        <!--<div class="form-group">-->
+                                            <!--<label class="control-label col-md-3 col-sm-3 col-xs-3">短信验证码</label>-->
+
+                                            <!--<div class="col-md-6 col-sm-6 col-xs-6">-->
+                                                <!--<input type="text" class="form-control" value="" name="validate_code" placeholder="">-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+
+                                        <div class="ln_solid"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                                <input type="hidden" name="id" value="{$data.config.id}">
+                                                <button type="submit" class="btn btn-primary">保存</button>
+                                                <a href="javascript:history.back();" class="btn">取消</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="dataTables_paginate paging_simple_numbers">
+                                        <div class="btn-toolbar">
+                                            <div class="btn-group">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

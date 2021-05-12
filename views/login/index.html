@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>点评后台管理系统</title>
+
+    <!-- Bootstrap core CSS -->
+
+    <link href="{$data.theme}/libs/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="{$data.theme}/libs/fonts/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{$data.theme}/libs/css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom styling plus plugins -->
+    <link href="{$data.theme}/libs/css/custom.css" rel="stylesheet">
+    <link href="{$data.theme}/libs/css/icheck/flat/green.css" rel="stylesheet">
+
+
+    <script src="{$data.theme}/libs/js/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="{$data.theme}/js/ie8-responsive-file-warning.js"></script>
+    <![endif]-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<script>
+    $(function(){
+        $.ajax({
+            url:"{['login/captcha']|U}?refresh=1",
+            type:'get',
+            dataType:'json',
+            success:function(data)
+            {
+                $('#loginform-verifycode-image').attr('src',data.url);
+            }
+        });
+
+        $('#loginform-verifycode-image').click(function(){
+            var image = $(this);
+            $.ajax({
+                url:"{['login/captcha']|U}?refresh=1",
+                type:'get',
+                dataType:'json',
+                success:function(data)
+                {
+                    image.attr('src',data.url);
+                }
+            });
+
+        });
+    });
+
+
+</script>
+
+<body style="background:#F7F7F7;">
+
+    <div class="">
+        <a class="hiddenanchor" id="toregister"></a>
+        <a class="hiddenanchor" id="tologin"></a>
+
+        <div id="wrapper">
+            <div id="login" class="animate form">
+            <section class="login_content">
+                <form action="{$data.loginUrl}" method="post">
+                    <h1>点评后台管理系统</h1>
+                    <div style="color:red;">{$data.tips}</div>
+                    <div>
+                        <input type="text" class="form-control" placeholder="Username" required="true" name="username" value="{$data.username}"/>
+                    </div>
+                    <div>
+                        <input type="password" class="form-control" placeholder="Password" required="true" name="pwd" />
+                        <input type="hidden" name="_csrf" value="{$data.csrf}" />
+                    </div>
+                    <div style="position:relative;">
+                        <input type="text" name="verifycode" class="form-control" style="width:120px;" placeholder="验证码" required="true">
+                        <img id="loginform-verifycode-image" src="{['login/captcha']|U}?refresh=1" style="position: absolute;top:-3px;left:130px; "/>
+                    </div>
+                    <div>
+                        {if $data.islogin!=1}
+                            <button type="submit" class="btn btn-success submit"  style="width:120px;">登录</button>
+                        <br />
+                        <input type="checkbox" style="float:left" name="rememberme" checked="checked"/><span style="float:left">记住用户名</span>
+
+                        <a href="{'login/resetpwd'|U}" style="float:right;font-size:13px;margin:0 0">修改密码</a>
+                        {else}
+                            <a href="{'index/index'|U}" class="btn btn-danger"  style="width:120px;font-size:14px;;">进入系统</a>
+                        {/if}
+
+                    </div>
+                    <div class="clearfix"></div>
+                        <br />
+                        <br />
+                    <div class="separator">
+                        <div class="clearfix"></div>
+                        <br />
+                        <div>
+                            <p>©2017 All Rights Reserved.</p>
+                        </div>
+                    </div>
+                </form>
+                <!-- form -->
+            </section>
+            <!-- content -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

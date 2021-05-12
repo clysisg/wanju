@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>角色修改</h2>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+
+                    <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1"  aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-8 col-xl-12">
+
+                                    <form action="/role/edit.html" method="post" class="form-horizontal form-label-left">
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">*角色名字</label>
+
+                                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                                <input type="text" class="form-control" value="{$data.role.name}" name="name" placeholder="Default Input">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">备注</label>
+
+                                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                                <input type="text" class="form-control" value="" name="remark" placeholder="remark">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">*状态</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                                <select class="form-control" name="status">
+                                                    <option value="1"
+                                                    {if $data.role.status==1} selected {/if}>启用</option>
+                                                    <option value="0"
+                                                    {if $data.role.status==0} selected {/if}>禁用</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="ln_solid"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                                <input type="hidden" name="id" value="{$data.role.id}">
+                                                <button type="submit" class="btn btn-primary">保存</button>
+                                                <a href="javascript:history.back();" class="btn">取消</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="dataTables_paginate paging_simple_numbers">
+                                        <div class="btn-toolbar">
+                                            <div class="btn-group">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{$data.theme}/js/source/layer/layer.js"></script>
+</div>

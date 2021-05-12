@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>角色管理<small>列表</small></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="row-fluid">
+                <form action="" method="get">
+                 <a class="btn btn-success" href="{eval U(['role/add','menu_id'=>'role/index'])}"> 添加角色</a>
+                </form>
+             </div>
+            <div class="x_content" style="display: block;">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th width="5%">#</th>
+                        <th width="15%">角色名</th>
+                        <th width="15%">备注</th>
+                        <th width="10%">状态</th>
+                        <th width="">创建日期</th>
+                        <th width="">修改日期</th>
+                        <th width="30%">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                   {foreach $data.role $val $key}
+                    <tr>
+                        <td scope="row">{$val.id}</td>
+                        <td>{$val.name}</td>
+                        <td>{$val.remark}</td>
+                        <td>{if $val.status==1}<span class="text-success">启用</span>{else}<span class="text-danger">禁用</span>{/if}</td>
+                        <td>{$val.create_date}</td>
+                        <td>{$val.update_date}</td>
+                        <td>
+                           <div class="x_content">
+                              <a class="btn btn-primary btn-xs" href="{eval U(['role/edit','menu_id'=>'role/index','id'=>$val.id])}"> 编辑</a>
+                              <a class="btn btn-success btn-xs" href="{eval U(['role/author','menu_id'=>'role/index','id'=>$val.id])}"> 权限</a>
+                              <button class="btn btn-danger btn-xs" data-toggle="dropdown">删除
+                                <i class="icon-angle-down"></i></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{eval U(['role/delete','menu_id'=>'role/index','id'=>$val.id])}">确定</a></li>
+                                    <li><a href="javascript:;">取消</a></li>
+                                </ul>
+                           </div>
+                        </td>
+                    </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

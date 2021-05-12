@@ -1,0 +1,86 @@
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>System
+                <small>Different Correlation setting</small>
+            </h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+               <!-- <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i
+                            class="fa fa-wrench"></i></a>
+                   &lt;!&ndash; <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Settings 1</a>
+                        </li>
+                        <li><a href="#">Settings 2</a>
+                        </li>
+                    </ul>&ndash;&gt;
+                </li>-->
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="bs-docs-section">
+                <h1 id="glyphicons" class="page-header">系统设置</h1>
+
+                <h2 id="glyphicons-glyphs">Available glyphs</h2>
+
+                <!--<p>Includes 260 glyphs in font format from the Glyphicon Halflings set. <a href="http://glyphicons.com/">Glyphicons</a>
+                    Halflings are normally not available for free, but their creator has made them available for Bootstrap free of cost.
+                    As a thank you, we only ask that you include a link back to <a href="http://glyphicons.com/">Glyphicons</a> whenever
+                    possible.</p>-->
+
+                <div class="bs-glyphicons">
+                    <ul class="bs-glyphicons-list">
+
+                        <li id="posVersion">
+                            <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                            <span class="glyphicon-class">PosVersionSetting</span>
+                        </li>
+
+                        <li id="appVersion">
+                            <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                            <span class="glyphicon-class">appVersionSetting</span>
+                        </li>
+
+                     <!--   <li>
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            <span class="glyphicon-class">glyphicon glyphicon-plus</span>
+                        </li>
+
+                        <li>
+                            <span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
+                            <span class="glyphicon-class">glyphicon glyphicon-euro</span>
+                        </li>
+
+                        <li>
+                            <span class="glyphicon glyphicon-eur" aria-hidden="true"></span>
+                            <span class="glyphicon-class">glyphicon glyphicon-eur</span>
+                        </li>
+
+                        <li>
+                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                            <span class="glyphicon-class">glyphicon glyphicon-minus</span>
+                        </li>-->
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+     $('#posVersion').click(function(){
+         window.location.href= "{eval U(['system/posindex','menu_id'=>'system/index'])}";
+     });
+     $('#appVersion').click(function(){
+         window.location.href= "{eval U(['system/appindex','menu_id'=>'system/index'])}";
+     });
+</script>

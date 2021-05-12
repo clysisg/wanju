@@ -1,0 +1,122 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>地区管理
+                    <small>列表</small>
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="row-fluid">
+                <form action="" method="get">
+                    <a class="btn btn-success" href="{eval U(['region/add-region-detail','menu_id'=>'author/index'])}"> 添加顶级地区</a>
+                    <a class="btn btn-success" onclick="javascript:window.history.go(-1);">返回上一页</a>
+                </form>
+            </div>
+            <div class="x_content" style="display: block;">
+                <table class="table J_per_list">
+                    <thead>
+                    <tr>
+                        <th width="5%">#</th>
+                        <th width="15%">行政编号</th>
+                        <th width="10%">父级行政编号</th>
+                        <th width="10%">地区名字</th>
+                        <th width="10%">地区名字缩写</th>
+                        <th width="10%">地区拼音</th>
+                        <th width="10%">地区缩写</th>
+                        <th width="5%">显示</th>
+                        <th width="5%">子级</th>
+                        <th width="30%">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {foreach $data.list $v1 $k1}
+                    <!-- 一级菜单 -->
+                    <tr id="{$v1.region_id}">
+                        <td>{$v1.region_id}</td>
+                        <td style="white-space: nowrap;">
+                            {$v1.region_code}
+                        </td>
+                        <td>{$v1.parent_code}</td>
+                        <td>{$v1.region_name}</td>
+                        <td>{$v1.region_shortname}</td>
+                        <td>{$v1.region_name_en }</td>
+                        <td>{$v1.region_shortname_en }</td>
+                        <td>
+                            {if $v1.region_enable == 1}
+                                显示
+                            {else}
+                                隐藏
+                            {/if}
+                        </td>
+                        <td>
+                            {if $v1.region_has_child == 1}
+                                有子级
+                            {else}
+                                无子级
+                            {/if}
+                        </td>
+                        <td>
+                            <div class="x_content">
+                                <a class="btn btn-primary btn-xs"
+                                   href="{eval U(['region/edit-region','menu_id'=>'region/index','region_id'=>$v1.region_id])}">
+                                    编辑</a>
+                                {if $v1.region_level != 3}
+                                <a class="btn btn-primary btn-xs" href="{eval U(['region/index','menu_id'=>'region/index','region_code'=>$v1.region_code])}">
+                                    查看子类
+                                </a>
+                                <button class="btn btn-danger btn-xs" data-toggle="dropdown">添加子类
+                                    <i class="icon-angle-down"></i></button>
+                                {/if}
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{eval U(['region/add-region-detail','menu_id'=>'region/index','region_id'=>$v1.region_id])}">确定</a>
+                                    </li>
+                                    <li><a href="javascript:;">取消</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(function () {
+        var sub_bool = false;
+        $('.J_open_second_sub').on('click', function () {
+            var _this = $(this);
+            var open_sub_hd = _this.attr('open_sub_hd');
+            var items_id = _this.parents('tr').attr('id');
+            if (open_sub_hd == 'false') {
+                $('.J_per_list tr[parent_id="' + items_id + '"]').removeClass('hide').find('.J_open_third_sub').attr('open_sub_hd', 'false').val('+');
+                _this.attr('open_sub_hd', 'true').val('-');
+            } else {
+                $('.J_per_list tr[parent_id="' + items_id + '"]').addClass('hide');
+                $('.J_per_list tr[first_parent_id="' + items_id + '"]').addClass('hide');
+                _this.attr('open_sub_hd', 'false').val('+');
+            }
+            ;
+        });
+
+        $('.J_open_third_sub').on('click', function () {
+            var _this = $(this);
+            var open_sub_hd = _this.attr('open_sub_hd');
+            var items_id = _this.parents('tr').attr('id');
+            if (open_sub_hd == 'false') {
+                $('.J_per_list tr[second_parent_id="' + items_id + '"]').removeClass('hide');
+                _this.attr('open_sub_hd', 'true').val('-');
+            } else {
+                $('.J_per_list tr[second_parent_id="' + items_id + '"]').addClass('hide');
+
+                _this.attr('open_sub_hd', 'false').val('+');
+            }
+            ;
+        });
+    });
+</script>

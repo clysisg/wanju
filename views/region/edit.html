@@ -1,0 +1,134 @@
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>地区修改</h2>
+                <a class="btn btn-primary" href="/region/index.html">返回列表页</a>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                    <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1"  aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 col-xl-12">
+
+                                    <form action="/region/edit-region.html" method="post" class="form-horizontal form-label-left">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">地区ID</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <input type="text" class="form-control" value="{$data.region_id}" name="region_id" placeholder="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">地区编号</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <input type="text" class="form-control" value="{$data.region_code}" name="region_code" placeholder="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">地区名</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <input type="text" class="form-control" name="region_name" value="{$data.region_name}" placeholder="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">父类编号</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <input type="text" class="form-control" value="{$data.parent_code}" name="parent_code" placeholder="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">等级</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                                <input type="text" class="form-control" value="{$data.region_level}" name="region_level" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">排序</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <input type="text" name="region_order" value="{$data.region_order}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">拼音</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <input type="text" name="region_name_en" value="{$data.region_name_en}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">缩写</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <input type="text" name="region_shortname_en" value="{$data.region_shortname_en}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">中文缩写</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <input type="text" name="region_shortname" value="{$data.region_shortname}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">显示操作</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <input type="text" name="region_enable" value="{$data.region_enable}">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">子级</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <input type="text" name="region_has_child" value="{$data.region_has_child}" placeholder="0 没有 1有">
+                                            </div>
+                                        </div>
+
+                                        <div class="ln_solid"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                                <input type="hidden" name="edit" value="1">
+                                                <button type="submit" class="btn btn-primary">保存</button>
+                                                <a href="javascript:history.back();" class="btn">取消</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="dataTables_paginate paging_simple_numbers">
+                                        <div class="btn-toolbar">
+                                            <div class="btn-group">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/js/source/ueditor/ueditor.config.js"></script>
+    <script src="/assets/js/source/ueditor/ueditor.all.min.js"></script>
+    <script src="/assets/js/source/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script src="/assets/js/source/layer/layer.js"></script>
+    <script src="/assets/libs/js/select/select2.full.js"></script>
+    <script>
+        window.UEDITOR_CONFIG.initialFrameHeight = 320;
+
+        UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+        UE.Editor.prototype.getActionUrl = function(action) {
+            if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
+                return '/index/upload.html';
+            } else {
+                return this._bkGetActionUrl.call(this, action);
+            }
+        }
+        var detailUe = UE.getEditor('J_detail');
+    </script>
+</div>

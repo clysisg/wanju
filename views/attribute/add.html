@@ -1,0 +1,34 @@
+
+  <div class="x_panel">
+    <div class="x_content row">
+      <div class=" col-md-6 col-sm-12 col-xs-12">
+        <form class="form-horizontal form-label-left" action="{$actionUrl}" method="post">
+          <div class="form-group">
+            <label class="control-label col-md-4 col-sm-4 col-xs-12">分类名称：</label>
+            <div class="checkbox col-md-8 col-sm-8 col-xs-12">
+              <input class="form-control col-md-3 col-xs-12" required="required" type="text" name="form[attr_name]" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-4 col-sm-4 col-xs-12">排序：</label>
+            <div class="checkbox col-md-8 col-sm-8 col-xs-12">
+              <input name="form[attr_sort]" id="" class="form-control" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-4 col-sm-4 col-xs-12">输入类型：</label>
+            <div class="checkbox col-md-8 col-sm-8 col-xs-12">
+              <select class="form-control" name="form[attr_input_type]">
+                {foreach $attr_input_type_list as $key => $value}
+                <option value="{$key}">{$value}</option>
+                {/foreach}
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-12 col-xs-12 col-md-offset-4 col-sm-offset-4">
+            <button class="btn btn-success" type="submit">新增</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

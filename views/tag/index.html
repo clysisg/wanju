@@ -1,0 +1,44 @@
+
+  <div class="x_panel">
+    <div class="x_content" style="display: block;">
+      <!--表格主体内容-->
+      <div class="nav navbar-right panel_toolbox">
+        <a class="fa fa-plus" href="/tag/add.html"> 添加</a>
+      </div>
+      <br><br>
+      <div class="cont">
+        <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th width="100px">序号</th>
+            <th>标签名称</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          {foreach $tag.lists as $tagitem}
+          <tr>
+            <td>{$tagitem.tag_id}</td>
+            <td>{$tagitem.name}</td>
+            <td>
+              <div class="x_content">
+                <a class="btn btn-primary btn-xs" href="{eval U(['tag/edit','tag_id'=>$tagitem.tag_id])}"> 编辑</a>
+                <button class="btn btn-danger btn-xs" data-toggle="dropdown">删除
+                  <i class="icon-angle-down"></i></button>
+                <ul class="dropdown-menu">
+                  <li><a href="{eval U(['tag/delete','tag_id'=>$tagitem.tag_id])}">确定</a></li>
+                  <li><a href="javascript:;">取消</a></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          {/foreach}
+          </tbody>
+        </table>
+        <!--分页-->
+
+        {Yii::$app->view->render('/com/pager.php',['pager'=>$tag['pager']])}
+      </div>
+    </div>
+  </div>
+

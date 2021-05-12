@@ -1,0 +1,136 @@
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+          <div class="row-fluid">
+            <form action="/role/author.html" method="post" class="form-horizontal form-row-seperated">
+
+              <div class="control-group">
+                <label class="control-label">角色名：</label>
+                <div class="controls">
+                  <div class="text">{$data.role.name}</div>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label">权限：</label>
+                <div class="controls">
+                  <div class="text">
+                    <ul class="tree" id="author_tree">
+                      {foreach $data.author $val $key}
+                      <li style="border-bottom: 1px dotted #575757;padding-bottom: 5px;" class="level1">
+                        <a href="javascript:;" class="tree-toggle" authorid="{$val['id']}" data-toggle="branch">
+                          <label class="checkbox">
+                            <input type="checkbox" name="form[author_id][]" id="author_{$val['id']}" value="{$val['id']}" level="1" class="J_level1" pid="">{$val['name']}
+                          </label>
+                        </a>
+                        {if !empty( $val['sub'])}
+                        {foreach $val['sub'] $va $ke}
+                        <ul class="branch in">
+                          <li class="level2">
+                            <a href="javascript:;" class="tree-toggle" authorid="{$va['id']}" data-toggle="branch">
+                              <label class="checkbox">
+                                <input type="checkbox" name="form[author_id][]" id="author_{$va['id']}" value="{$va['id']}" level="2" class="J_level2" pid="{$val['id']}">{$va['name']}
+                              </label>
+                            </a>
+                            {if !empty( $va['sub'])}
+                            <ul class="branch in">`
+                              {foreach $va['sub'] $v $k}
+                              <li style="display: inline-block;"  class="level2">
+                                <a href="javascript:;" authorid="{$v['id']}" data-role="leaf">
+                                  <label class="checkbox" style="margin-bottom: 0px;margin-right: 25px;">
+                                    <i class="icon-caret-right"></i>
+                                      <input type="checkbox" name="form[author_id][]" id="author_{$v['id']}" value="{$v['id']}" level="3" class="J_level3" pid="{$val['id']}-{$va['id']}">{$v['name']}
+                                  </label>
+                                </a>
+                              </li>
+                              {/foreach}
+                            </ul>
+                              {/if}
+                          </li>
+                        </ul>
+                        {/foreach}
+                          {/if}
+                      </li>
+                      {/foreach}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                  <button type="submit" class="btn blue"><i class="icon-ok"></i> 保存</button>
+                     <a href="javascript:history.back();" class="btn">取消</a>
+                  <input type="hidden" value="{$data.role.id}" name="form[id]"/>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+
+    <script>
+      $(function () {
+        (function () {
+          var roleAuthorIds = "{$data.author_id}";
+          if (roleAuthorIds) {
+            var arr = roleAuthorIds.split(',');
+            for (var i = 0, len = arr.length; i < len; i++) {
+              var author = $('#author_' + arr[i]);
+              if (author) {
+                author.attr('checked', true);
+                author.parent().addClass('checked');
+                author.parent().parent().addClass('focus');
+              }
+            }
+          }
+        })();
+
+        function isChecked(obj) {
+        	var flag = true;
+        	$.each(obj.children('ul').find('input[type=checkbox]'), function(i,item) {
+        		if($(item).prop('checked') === false) {
+        			flag = false;
+        		}
+        	});
+
+        	return flag;
+        }
+
+        $('.J_level1').on('click', function() {
+        	var self = $(this);        	
+        	if(self.prop('checked')) {
+        		self.parents('li').find('input[type=checkbox]').prop('checked', true);
+        	} else {        		
+        		self.parents('li').find('input[type=checkbox]').prop('checked', false);
+        	}
+        });
+        $('.J_level2').on('click', function() {
+        	var self = $(this);    	
+        	if(self.prop('checked')) {
+        		self.parents('li').eq(0).find('input[type=checkbox]').prop('checked', true);
+        		if(isChecked(self.parents('li.level1'))) {
+        			self.parents('li.level1').find('.J_level1').prop('checked', true);
+        		}
+
+        	} else {        		
+        		self.parents('li.level2').eq(0).find('input[type=checkbox]').prop('checked', false);
+        		self.parents('li.level1').find('.J_level1').prop('checked', false);
+        	}
+        });
+        $('.J_level3').on('click', function() {
+        	var self = $(this);    	
+        	if(self.prop('checked')) {
+        		if(isChecked(self.parents('li.level2'))) {
+        			self.parents('li.level2').find('.J_level2').prop('checked', true);
+        		}
+        		if(isChecked(self.parents('li.level1'))) {
+        			self.parents('li.level1').find('.J_level1').prop('checked', true);
+        		}        		
+        	} else {        		        		
+        		self.parents('li.level1').find('.J_level1').prop('checked', false);
+        		self.parents('li.level2').find('.J_level2').prop('checked', false);
+        	}
+        });
+      });
+    </script>

@@ -1,0 +1,188 @@
+<div class="x_panel">
+  <h1>用户详情</h1>
+  <div class="x_title col-md-12 col-sm-12 col-xs-12">
+    <h2><i class="fa fa-bars"></i>基本信息</h2>
+    <div class="clearfix"></div>
+  </div>
+  <div class="col-md-10 col-sm-10 col-xs-10">
+    <table class="table table-striped table-bordered dataTable no-footer" data-fixed-head="fixed">
+      <tr>
+        <th class="column-title">用户id</th>
+        <th class="column-title">用户名</th>
+        <th class="column-title">电话号码</th>
+        <th class="column-title">邮箱</th>
+        <th class="column-title">微信绑定</th>
+        <th class="column-title">微信绑定时间</th>
+        <th class="column-title">qq绑定</th>
+        <th class="column-title">qq绑定时间</th>
+      </tr>
+      <tr>
+        <td class="column-title">{$data.user.user_id}</td>
+        <td class="column-title">{$data.user.username}</td>
+        <td class="column-title">{$data.user.reg_mobile}</td>
+        <td class="column-title">{$data.user.email}</td>
+        <td class="column-title">{$data.user.bind_weixin}</td>
+        <td class="column-title">{$data.user.bind_weixin_date}</td>
+        <td class="column-title">{$data.user.bind_qq}</td>
+        <td class="column-title">{$data.user.bind_qq_date}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-2 col-sm-2 col-xs-2">
+      <img src="{$data.user.header}" class="img-circle img-responsive" style="width: 100px;height: 100px">
+  </div>
+  <div class="x_title col-md-12 col-sm-12 col-xs-12">
+    <h2><i class="fa fa-bars"></i>操作记录</h2>
+    <div class="clearfix"></div>
+  </div>
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <table class="table table-striped table-bordered dataTable no-footer" data-fixed-head="fixed">
+      <tr class="headings">
+        <th class="column-title" width="15%">注册时间</th>
+        <th class="column-title">注册渠道</th>
+        <th class="column-title">最近一次登录时间</th>
+        <th class="column-title">最近一次登录渠道</th>
+      </tr>
+      <tr class="">
+        <td class="column-title" width="15%">{$data.user.createtime}</td>
+        <td class="column-title">唯衣网PC</td>
+        <td class="column-title">{$data.user.last_login_date}</td>
+        <td class="column-title">{$data.user.last_login_channel}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="x_title col-md-12 col-sm-12 col-xs-12">
+    <h2><i class="fa fa-bars"></i>登录统计(登录总次数：{$data.user.login_count})</h2>
+    <div class="clearfix"></div>
+  </div>
+  <div class="col-md-4 col-sm-4 col-xs-12">
+    <table class="table table-striped table-bordered dataTable no-footer">
+      <tr class="headings">
+        <th class="column-title">登录渠道</th>
+        <th class="column-title">登录次数</th>
+        <th class="column-title">最后一次登录时间</th>
+      </tr>
+      {foreach $data.user.login_log_by_login_chanel as $v}
+      <tr class="">
+        <td class="">{$data.login_channel_list[$v['login_channel']]}</td>
+        <td class="">{$v['count(*)']}</td>
+        <td class="">{$v['max(login_time)']}</td>
+      </tr>
+      {/foreach}
+    </table>
+  </div>
+  <div class="col-md-4 col-sm-4 col-xs-12">
+    <table class="table table-striped table-bordered dataTable no-footer col-md-6 col-sm-6 col-xs-12">
+      <tr class="headings">
+        <th class="column-title">登录方式</th>
+        <th class="column-title">登录次数</th>
+        <th class="column-title">最后一次登录时间</th>
+      </tr>
+      {foreach $data.user.login_log_by_login_type as $v}
+        <tr class="">
+          <td class="">{$data.login_type_list[$v['login_type']]}</td>
+          <td class="">{$v['count(*)']}</td>
+          <td class="">{$v['max(login_time)']}</td>
+        </tr>
+      {/foreach}
+    </table>
+  </div>
+  <div class="col-md-4 col-sm-4 col-xs-12">
+    <table class="table table-striped table-bordered dataTable no-footer col-md-6 col-sm-6 col-xs-12">
+      <tr class="headings">
+        <th class="column-title">第三方登录</th>
+        <th class="column-title">登录次数</th>
+        <th class="column-title">最后一次登录时间</th>
+      </tr>
+      {foreach $data.user.login_log_by_third_type as $v}
+        <tr class="">
+          <td class="">{$data.third_type_list[$v['third_type']]}</td>
+          <td class="">{$v['count(*)']}</td>
+          <td class="">{$v['max(login_time)']}</td>
+        </tr>
+      {/foreach}
+    </table>
+  </div>
+  <div class="x_title col-md-12 col-sm-12 col-xs-12">
+    <h2><i class="fa fa-bars"></i>备注及资格时间</h2>
+    <div class="clearfix"></div>
+  </div>
+
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <form action="{$data.actionUrl}" method="post" id="form">
+      <!--2017-07-04 任我行-->
+      <div class="row">
+        <div class="col-md-6 com-sm-12 com-xs-12">
+          <label for="">云市场资格时间</label>
+          <div class="input-prepend input-group">
+            <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+            <input type="text"  name="form[cloud_date]" value="{$data.user.cloud_date}"  placeholder="云市场资格时间" id="J_start" class="form-control" >
+          </div>
+        </div>
+        <div class="col-md-6 com-sm-12 com-xs-12">
+          <label for="">唯衣宝资格时间</label>
+          <div class="input-prepend input-group">
+            <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+            <input type="text"  name="form[weyee_date]" value="{$data.user.weyee_date}"  placeholder="唯衣宝资格时间" id="J_end" class="form-control" >
+          </div>
+        </div>
+      </div>
+      <!--2017-07-04 任我行-->
+      <textarea class="form-control resizable_textarea" name="remark">{$data.user.remark}</textarea>
+      <input type="hidden" name="user_id" value="{$data.user.user_id}">
+    <div class="ln_solid"></div>
+    <div class="form-group">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <button type="submit" class="btn btn-success">保存</button>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript" src=" /assets/libs/js/datepicker/bootstrap-datetimepicker.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        var startDate = $('#J_start').datetimepicker({
+            format: "yyyy-MM-dd hh:ii:ss",
+            autoclose: true,
+            todayBtn: true
+        }).on('changeDate', function(ev) {
+//            var end = $('#J_end').val();
+//            var evDate = ev.date.getFullYear() + '-' + (ev.date.getMonth() + 1) + '-' + ev.date.getDate();
+//            if($.trim(end) != '') {
+//                var dt = new Date(end);
+//                if(ev.date.valueOf() > dt.valueOf()) {
+//                    $('#J_end').val('');
+//                }
+//            }
+//            $('#J_end').datetimepicker('setStartDate', evDate);
+
+        });
+
+        var endDate = $('#J_end').datetimepicker({
+            format: "yyyy-MM-dd hh:ii:ss",
+            autoclose: true,
+            todayBtn: true
+        }).on('changeDate', function(ev) {
+//            var end = $('#J_start').val();
+//            var evDate = ev.date.getFullYear() + '-' + (ev.date.getMonth() + 1) + '-' + ev.date.getDate();
+//            if($.trim(end) != '') {
+//                var dt = new Date(end);
+//                if(ev.date.valueOf() < dt.valueOf()) {
+//                    $('#J_start').val('');
+//                }
+//            }
+//            $('#J_start').datetimepicker('setEndDate', evDate);
+        });
+
+        $('#form').submit(function (e) {
+            e.preventDefault();
+            $.post('{$data.actionUrl}', $(this).serialize(), function (data) {
+                alert('保存成功');
+            });
+        });
+    });
+
+
+</script>

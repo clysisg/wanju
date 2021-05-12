@@ -1,0 +1,111 @@
+
+  <link href="{$data.theme}/libs/css/select/select2.min.css" rel="stylesheet">
+
+
+    <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>pos版本修改</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                    <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1"  aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-8 col-xl-12">
+
+                                    <form action="/system/posedit.html" method="post" class="form-horizontal form-label-left" enctype="multipart/form-data" >
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">*版本id</label>
+
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <input type="text" class="form-control" value="{$data.version.bid}" name="bid" placeholder="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">提示</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                 <textarea class="form-control" name="notice" placeholder="此处最多输入300个字">{$data.version.notice}</textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                          <label class="control-label col-md-3 col-sm-3 col-xs-12">*接口版本号</label>
+                                          <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <input type="text" class="form-control" value="{$data.version.version}" name="version" placeholder="">
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">*产品版本号</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <input type="text" class="form-control" value="{$data.version.app_ver}" name="app_ver" placeholder="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">*状态</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                                <select class="form-control" name="status">
+                                                    <option value="1" {if $data.version.status==1}selected{/if} >可不更新</option>
+                                                    <option value="2" {if $data.version.status==2}selected{/if}>必须更新</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                             <label class="control-label col-md-3 col-sm-3 col-xs-3">*file</label>
+                                             <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <input type="text" class="form-control" value="{$data.version.filename}" name="filename" placeholder="">
+                                             </div>
+                                        </div>
+
+                                        <div class="ln_solid"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                                <input type="hidden" name="id" value="{$data.version.id}">
+                                                <input type="hidden" name="pos_type" value="{$data.version.type}">
+                                                <button type="submit" class="btn btn-primary">保存</button>
+                                                <a href="javascript:history.back();" class="btn">取消</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="dataTables_paginate paging_simple_numbers">
+                                        <div class="btn-toolbar">
+                                            <div class="btn-group">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{$data.theme}/js/source/layer/layer.js"></script>
+    <script src="{$data.theme}/libs/js/select/select2.full.js"></script>
+
+  <script>
+   $(function () {
+
+      $(".select2_multiple").select2({
+        maximumSelectionLength: 3,
+        placeholder: "选择角色、可选多个、最多三个",
+        allowClear: true
+      });
+    });
+
+   $("form").submit(function(){
+       var len = $('textarea[name=notice]').val().length;
+       if(len > 300){
+           alert('输入字数不能超过300');
+           return false;
+       }
+   });
+  </script>
+</div>
