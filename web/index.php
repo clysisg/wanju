@@ -4,7 +4,6 @@ defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'local');
 
 define('YII_VENDOR', '/../vendor/');
-require(__DIR__ . '/../api/common/corelib/jpush/autoload.php');
 require(__DIR__ . YII_VENDOR . 'autoload.php');
 require(__DIR__ . YII_VENDOR . 'yiisoft/yii2/Yii.php');
 

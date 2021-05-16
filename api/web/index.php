@@ -5,8 +5,7 @@ defined('YII_ENV') or define('YII_ENV', 'local');
 
 define('YII_VENDOR', '/../../vendor/');
 
-require(__DIR__ . '/../common/corelib/jpush/autoload.php');
-require(__DIR__ . '/../common/corelib/alidayu/api_sdk/vendor/autoload.php');
+//require(__DIR__ . '/../common/corelib/alidayu/api_sdk/vendor/autoload.php');
 require(__DIR__ . YII_VENDOR . 'autoload.php');
 require(__DIR__ . YII_VENDOR . 'yiisoft/yii2/Yii.php');
 
